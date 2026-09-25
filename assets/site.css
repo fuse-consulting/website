@@ -1156,9 +1156,12 @@ html[lang="fr"] .hero--wwd h1 { font-size: clamp(30px, 4.2vw, 60px); }
 html[lang="fr"] .hero--wwd h1 { font-size: clamp(30px, 4.2vw, 60px); }
 .hero--wwd .wwd-hero__foot .hero__lead { max-width: 58ch; color: var(--brown-20); }
 
-/* ── Our Story : la StoryMap plein écran sous la barre, sans cadre ni bandeau (25-09-2026) ── */
-.storymap-full { padding-top: var(--header-h); background: var(--ink); }
-.storymap-full iframe { display: block; width: 100%; height: calc(100vh - var(--header-h)); height: calc(100svh - var(--header-h)); border: 0; }
+/* ── Our Story : la StoryMap bord à bord sous le bandeau (25-09-2026).
+   --sm-bar = hauteur de la barre « ArcGIS StoryMaps » en haut de leur page :
+   le cadre remonte d'autant et la section coupe ce qui dépasse. Si ArcGIS
+   change la hauteur de sa barre, c'est ce nombre qu'on ajuste. */
+.storymap-full { --sm-bar: 64px; position: relative; overflow: hidden; height: calc(100vh - var(--header-h)); height: calc(100svh - var(--header-h)); background: #fff; }
+.storymap-full iframe { display: block; width: 100%; height: calc(100% + var(--sm-bar)); margin-top: calc(-1 * var(--sm-bar)); border: 0; }
 
 /* Les exemples d'un format : autant de colonnes que la rangée en supporte
    sans laisser une vignette seule (4 → 2 × 2, 2 → 2, sinon 3) */
