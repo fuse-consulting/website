@@ -6,7 +6,7 @@
 <title>Our story — Fuse Consulting</title>
 <meta name="description" content="Fuse Consulting turns complex science into visuals, workshops and plain-language reports that people can act on. Five service areas, twenty-three services, across Canada.">
 <meta name="robots" content="noindex, nofollow">
-<link rel="stylesheet" href="assets/site.css?v=20260925p">
+<link rel="stylesheet" href="assets/site.css?v=20260925q">
 <link rel="alternate" hreflang="en" href="our-story.html">
 <link rel="alternate" hreflang="fr" href="fr/our-story.html">
 <link rel="icon" href="assets/img/fuse-logo.png">
@@ -34,17 +34,12 @@
 </header>
 
 <main id="main">
-<!-- Our Story : la StoryMap de Fuse, intégrée telle quelle (retour de Flore, 25-09-2026).
-     Seul cadre extérieur du site ; le lien dessous l'ouvre chez ArcGIS si le cadre ne charge pas. -->
-<section class="page-band"><div class="wrap"><h1>Our story</h1><p>Our origin story starts with four passionate University of Alberta science graduates, all convinced that connecting research to practice was possible.</p></div></section>
-<section class="section storymap-section">
-    <div class="wrap">
-        <div class="storymap reveal">
-            <iframe src="https://storymaps.arcgis.com/stories/53efe1a22caa4f43b8a99f664360504d?header=false" title="Our story — ArcGIS StoryMap" loading="lazy" allowfullscreen allow="geolocation"></iframe>
-        </div>
-        <p class="storymap__out"><a class="link-more" href="https://storymaps.arcgis.com/stories/53efe1a22caa4f43b8a99f664360504d" rel="noopener">Open the story full screen <span class="arrow">↗</span></a><span>Scroll inside the frame to move through the story.</span></p>
-        <p style="margin-top:28px"><a class="btn btn--ghost" href="our-team.html">Meet the whole team <span class="arrow">→</span></a></p>
-    </div>
+<!-- Our Story : la StoryMap de Fuse occupe tout l'écran sous la barre, sans bandeau,
+     comme si elle était le site (Mark, 25-09-2026). Le h1 reste pour les lecteurs d'écran. -->
+<h1 class="visually-hidden">Our story</h1>
+<section class="storymap-full" aria-label="Our story">
+    <iframe src="https://storymaps.arcgis.com/stories/53efe1a22caa4f43b8a99f664360504d" title="Our story — ArcGIS StoryMap" allowfullscreen allow="geolocation"></iframe>
+    <noscript><p><a href="https://storymaps.arcgis.com/stories/53efe1a22caa4f43b8a99f664360504d">Open our story</a></p></noscript>
 </section>
 </main>
 
@@ -96,6 +91,6 @@
     </div>
 </footer>
 
-<script src="assets/site.js?v=20260925p"></script>
+<script src="assets/site.js?v=20260925q"></script>
 </body>
 </html>

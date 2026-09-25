@@ -1156,12 +1156,9 @@ html[lang="fr"] .hero--wwd h1 { font-size: clamp(30px, 4.2vw, 60px); }
 html[lang="fr"] .hero--wwd h1 { font-size: clamp(30px, 4.2vw, 60px); }
 .hero--wwd .wwd-hero__foot .hero__lead { max-width: 58ch; color: var(--brown-20); }
 
-/* ── Our Story : la StoryMap de Fuse dans un cadre (25-09-2026) ── */
-.storymap-section { padding-top: clamp(28px, 4vw, 48px); }
-.storymap { position: relative; border-radius: 12px; overflow: hidden; background: var(--lime-20); border: 1px solid var(--line); box-shadow: 0 30px 60px -40px rgb(var(--brown-rgb) / .6); }
-.storymap iframe { display: block; width: 100%; height: min(82vh, 900px); height: min(82svh, 900px); border: 0; }
-.storymap__out { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 20px; margin: 14px 0 0; font-size: 15px; color: var(--ink-muted); }
-@media (max-width: 600px) { .storymap iframe { height: 78svh; } }
+/* ── Our Story : la StoryMap plein écran sous la barre, sans cadre ni bandeau (25-09-2026) ── */
+.storymap-full { padding-top: var(--header-h); background: var(--ink); }
+.storymap-full iframe { display: block; width: 100%; height: calc(100vh - var(--header-h)); height: calc(100svh - var(--header-h)); border: 0; }
 
 /* Les exemples d'un format : autant de colonnes que la rangée en supporte
    sans laisser une vignette seule (4 → 2 × 2, 2 → 2, sinon 3) */

@@ -6,7 +6,7 @@
 <title>Notre histoire — Fuse Consulting</title>
 <meta name="description" content="Fuse Consulting transforme une science complexe en visuels, en ateliers et en rapports en langage clair, sur lesquels les gens peuvent agir. Cinq domaines, vingt-trois services, partout au Canada.">
 <meta name="robots" content="noindex, nofollow">
-<link rel="stylesheet" href="../assets/site.css?v=20260925p">
+<link rel="stylesheet" href="../assets/site.css?v=20260925q">
 <link rel="alternate" hreflang="en" href="../our-story.html">
 <link rel="alternate" hreflang="fr" href="our-story.html">
 <link rel="icon" href="../assets/img/fuse-logo.png">
@@ -34,17 +34,12 @@
 </header>
 
 <main id="main">
-<!-- Our Story : la StoryMap de Fuse, intégrée telle quelle (retour de Flore, 25-09-2026).
-     Seul cadre extérieur du site ; le lien dessous l'ouvre chez ArcGIS si le cadre ne charge pas. -->
-<section class="page-band"><div class="wrap"><h1>Notre histoire</h1><p>Notre histoire commence avec quatre diplômés en sciences de la University of Alberta, passionnés et tous convaincus qu'il était possible de relier la recherche à la pratique.</p></div></section>
-<section class="section storymap-section">
-    <div class="wrap">
-        <div class="storymap reveal">
-            <iframe src="https://storymaps.arcgis.com/stories/53efe1a22caa4f43b8a99f664360504d?header=false" title="Notre histoire — StoryMap ArcGIS" loading="lazy" allowfullscreen allow="geolocation"></iframe>
-        </div>
-        <p class="storymap__out"><a class="link-more" href="https://storymaps.arcgis.com/stories/53efe1a22caa4f43b8a99f664360504d" rel="noopener">Ouvrir l’histoire en plein écran <span class="arrow">↗</span></a><span>Faites défiler dans le cadre pour avancer dans l’histoire.</span></p>
-        <p style="margin-top:28px"><a class="btn btn--ghost" href="our-team.html">Rencontrer toute l’équipe <span class="arrow">→</span></a></p>
-    </div>
+<!-- Our Story : la StoryMap de Fuse occupe tout l'écran sous la barre, sans bandeau,
+     comme si elle était le site (Mark, 25-09-2026). Le h1 reste pour les lecteurs d'écran. -->
+<h1 class="visually-hidden">Notre histoire</h1>
+<section class="storymap-full" aria-label="Notre histoire">
+    <iframe src="https://storymaps.arcgis.com/stories/53efe1a22caa4f43b8a99f664360504d" title="Notre histoire — StoryMap ArcGIS" allowfullscreen allow="geolocation"></iframe>
+    <noscript><p><a href="https://storymaps.arcgis.com/stories/53efe1a22caa4f43b8a99f664360504d">Ouvrir notre histoire</a></p></noscript>
 </section>
 </main>
 
@@ -96,6 +91,6 @@
     </div>
 </footer>
 
-<script src="../assets/site.js?v=20260925p"></script>
+<script src="../assets/site.js?v=20260925q"></script>
 </body>
 </html>
