@@ -46,7 +46,15 @@ education-science-outreach.html
                            one page per service area: "You'll want us if…",
                            the services, examples. An example without a
                            file is a placeholder (work-tile--ph)
-our-story.html             Fuse's story
+literature-review.html, guidebook.html, best-management-practice.html
+                           one example page per Knowledge Synthesis
+                           deliverable: structure, extracts (mock-ups),
+                           final product
+case-studies.html          case studies, filtered by service area
+                           (?area=synthesis). Each service-area page
+                           shows three before the final call to action
+our-story.html             Fuse's story: their ArcGIS StoryMap in a
+                           frame, the only external content on the site
 our-team.html              the team
 blog.html                  articles
 connect.html               contact
@@ -121,10 +129,14 @@ deleted.
 - I change only what was asked.
 - Colours, sizes and spacing come from the variables at the top of
   `assets/site.css`. I do not add hard-coded colours.
-- The brand green `#ABBF0F` is a fill, never a text colour (2:1 contrast).
-  Green text: `--lime-700` or `--lime-900`.
+- The palette has four colours: brown `--brown` and forest green
+  `--forest` (primary), lime `--lime` and orange `--orange` (secondary),
+  each in 80, 60, 40, 20 % tones (`--brown-80`…). Transparency is taken
+  from 20 / 40 / 60 / 80 % (`rgb(var(--brown-rgb) / .6)`).
+- Text is brown. Green text: `--forest`. Lime is a fill, never a text
+  colour (2:1 contrast).
 - Orange (`--orange`) is the only action colour (buttons, call-to-action
-  links).
+  links), always under brown text: white on orange is unreadable (2.6:1).
 - Every page keeps `<meta name="robots" content="noindex, nofollow">`
   until the site has replaced fuseconsulting.ca.
 

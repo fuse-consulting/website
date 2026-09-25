@@ -361,30 +361,24 @@ var FUSE_FR = document.documentElement.lang === 'fr';
         });
     });
 
-    /* La carte du Canada : une case et ses projets s'allument ensemble */
-    var tiles = Array.prototype.slice.call(document.querySelectorAll('.tile'));
-    var projs = Array.prototype.slice.call(document.querySelectorAll('.proj'));
+    /* La carte du Canada : une province et son groupe de visages s'allument ensemble */
+    var tiles = Array.prototype.slice.call(document.querySelectorAll('.tile--team'));
+    var provs = Array.prototype.slice.call(document.querySelectorAll('.prov'));
     function light(prov) {
-        tiles.forEach(function (t) {
-            var p = t.getAttribute('data-prov');
-            t.classList.toggle('is-lit', !!prov && (prov === 'all' ? t.classList.contains('tile--project') || t.classList.contains('tile--office') : p === prov));
-        });
-        projs.forEach(function (x) {
-            var p = x.getAttribute('data-prov');
-            x.classList.toggle('is-lit', !!prov && (p === prov || (p === 'all' && prov !== null && false)));
-        });
+        tiles.forEach(function (t) { t.classList.toggle('is-lit', !!prov && t.getAttribute('data-prov') === prov); });
+        provs.forEach(function (x) { x.classList.toggle('is-lit', !!prov && x.getAttribute('data-prov') === prov); });
     }
     tiles.forEach(function (t) {
         var on = function () { light(t.getAttribute('data-prov')); };
         t.addEventListener('mouseenter', on); t.addEventListener('focus', on);
         t.addEventListener('mouseleave', function () { light(null); }); t.addEventListener('blur', function () { light(null); });
         t.addEventListener('click', function () {
-            var first = projs.filter(function (x) { return x.getAttribute('data-prov') === t.getAttribute('data-prov'); })[0];
-            if (first) first.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+            var c = provs.filter(function (x) { return x.getAttribute('data-prov') === t.getAttribute('data-prov'); })[0];
+            if (c && window.matchMedia('(max-width: 960px)').matches) c.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
         });
     });
-    projs.forEach(function (x) {
-        x.addEventListener('mouseenter', function () { light(x.getAttribute('data-prov')); x.classList.add('is-lit'); });
+    provs.forEach(function (x) {
+        x.addEventListener('mouseenter', function () { light(x.getAttribute('data-prov')); });
         x.addEventListener('mouseleave', function () { light(null); });
     });
 })();
@@ -459,6 +453,52 @@ var FUSE_FR = document.documentElement.lang === 'fr';
         select(Math.max(fromHash(), 0));
         window.addEventListener('hashchange', function () { var k = fromHash(); if (k > -1) select(k); });
     });
+
+    /* Les sept étapes d'une synthèse : un chiffre ouvre sa fenêtre, une seule à la fois */
+    var procBtns = Array.prototype.slice.call(document.querySelectorAll('.proc__num'));
+    function procClose(except) {
+        procBtns.forEach(function (b) {
+            if (b === except) return;
+            b.setAttribute('aria-expanded', 'false');
+            var p = document.getElementById(b.getAttribute('aria-controls')); if (p) p.hidden = true;
+        });
+    }
+    procBtns.forEach(function (b) {
+        b.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var p = document.getElementById(b.getAttribute('aria-controls')), open = b.getAttribute('aria-expanded') !== 'true';
+            procClose(b);
+            b.setAttribute('aria-expanded', open ? 'true' : 'false'); p.hidden = !open;
+        });
+    });
+    if (procBtns.length) {
+        document.addEventListener('click', function (e) { if (!e.target.closest('.proc__pop')) procClose(null); });
+        document.addEventListener('keydown', function (e) {
+            if (e.key !== 'Escape') return;
+            var b = procBtns.filter(function (x) { return x.getAttribute('aria-expanded') === 'true'; })[0];
+            procClose(null); if (b) b.focus();
+        });
+    }
+
+    /* Les études de cas : un filtre par domaine, ?area= le choisit en arrivant */
+    var caseChips = Array.prototype.slice.call(document.querySelectorAll('.case-filter .chip'));
+    if (caseChips.length) {
+        var cases = Array.prototype.slice.call(document.querySelectorAll('.case'));
+        var caseStatus = document.querySelector('.case-status');
+        var pickArea = function (area, quiet) {
+            var shown = 0;
+            caseChips.forEach(function (c) { c.setAttribute('aria-pressed', c.getAttribute('data-area') === area ? 'true' : 'false'); });
+            cases.forEach(function (c) {
+                var ok = area === 'all' || (' ' + c.getAttribute('data-area') + ' ').indexOf(' ' + area + ' ') > -1;
+                c.hidden = !ok; if (ok) { shown++; c.classList.add('in'); }
+            });
+            if (caseStatus && !quiet) caseStatus.textContent = FUSE_FR ? shown + (shown > 1 ? ' études de cas' : ' étude de cas') : shown + (shown > 1 ? ' case studies' : ' case study');
+        };
+        caseChips.forEach(function (c) { c.addEventListener('click', function () { pickArea(c.getAttribute('data-area')); }); });
+        var wanted = (window.location.search.match(/[?&]area=([a-z]+)/) || [])[1];
+        if (wanted && !window.location.hash && caseChips.some(function (c) { return c.getAttribute('data-area') === wanted; })) pickArea(wanted);
+        window.addEventListener('hashchange', function () { pickArea('all', true); });
+    }
 
     /* Les formats d'atelier : filtrés par lieu et par taille */
     document.querySelectorAll('.fmt-tools').forEach(function (tools) {
