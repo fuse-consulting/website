@@ -135,10 +135,13 @@ après suppression.
   (primaires), lime `--lime` et orange `--orange` (secondaires), chacune en
   tons 80, 60, 40, 20 % (`--brown-80`…). Une transparence se prend dans
   20 / 40 / 60 / 80 % (`rgb(var(--brown-rgb) / .6)`).
-- Le texte est brun. Texte vert : `--forest`. Le lime est un aplat, jamais
+- **Aucun brun visible sur le site** (décision du 25-09-2026) : les jetons
+  `--brown` portent un vert très sombre (#1f2d1c). Ne jamais y remettre
+  #53413c ni ajouter de fond brun.
+- Le texte est en `--ink` (ce vert très sombre). Texte vert : `--forest`. Le lime est un aplat, jamais
   une couleur de texte (contraste 2:1).
 - L'orange (`--orange`) est la seule couleur d'action (boutons, liens
-  d'appel), toujours sous un texte brun : le blanc sur orange ne se lit pas
+  d'appel), toujours sous un texte `--ink` : le blanc sur orange ne se lit pas
   (2,6:1).
 - Chaque page garde `<meta name="robots" content="noindex, nofollow">`
   tant que le site n'a pas remplacé fuseconsulting.ca.

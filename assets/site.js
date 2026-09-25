@@ -500,6 +500,16 @@ var FUSE_FR = document.documentElement.lang === 'fr';
         window.addEventListener('hashchange', function () { pickArea('all', true); });
     }
 
+    /* Our Story : la StoryMap ne prend la molette qu'une fois calée sous la barre */
+    var sm = document.querySelector('.storymap-full');
+    if (sm) {
+        var smLive = function () {
+            var hd = document.querySelector('.site-header'), top = sm.getBoundingClientRect().top, h = hd ? hd.getBoundingClientRect().height : 0;
+            sm.classList.toggle('is-live', top <= h + 2);
+        };
+        window.addEventListener('scroll', smLive, { passive: true }); window.addEventListener('resize', smLive); smLive();
+    }
+
     /* Les formats d'atelier : filtrés par lieu et par taille */
     document.querySelectorAll('.fmt-tools').forEach(function (tools) {
         var chips = tools.querySelectorAll('.chip');

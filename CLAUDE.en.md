@@ -133,10 +133,13 @@ deleted.
   `--forest` (primary), lime `--lime` and orange `--orange` (secondary),
   each in 80, 60, 40, 20 % tones (`--brown-80`…). Transparency is taken
   from 20 / 40 / 60 / 80 % (`rgb(var(--brown-rgb) / .6)`).
-- Text is brown. Green text: `--forest`. Lime is a fill, never a text
+- **No visible brown on the site** (decision of 2026-09-25): the `--brown`
+  tokens carry a very dark green (#1f2d1c). Never put #53413c back or add
+  a brown background.
+- Text is `--ink` (that very dark green). Green text: `--forest`. Lime is a fill, never a text
   colour (2:1 contrast).
 - Orange (`--orange`) is the only action colour (buttons, call-to-action
-  links), always under brown text: white on orange is unreadable (2.6:1).
+  links), always under `--ink` text: white on orange is unreadable (2.6:1).
 - Every page keeps `<meta name="robots" content="noindex, nofollow">`
   until the site has replaced fuseconsulting.ca.
 

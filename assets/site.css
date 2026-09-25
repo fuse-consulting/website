@@ -20,11 +20,14 @@
     /* La charte de Fuse : quatre couleurs, et leurs tons à 80, 60, 40, 20 %
        (la couleur mêlée de blanc). Rien d'autre : une teinte qui manque se
        prend dans un ton, une transparence dans 20 / 40 / 60 / 80 %. */
-    --brown:       #53413c;   /* primaire — le texte, les fonds sombres. Blanc dessus : 9,7:1 */
-    --brown-80:    #756763;   /* texte secondaire sur blanc : 5,6:1 */
-    --brown-60:    #988d8a;
-    --brown-40:    #bab3b1;   /* petit texte sur fond brun : 4,6:1 */
-    --brown-20:    #ddd9d8;   /* filets ; texte courant sur fond brun : 6,9:1 */
+    /* Le brun de la charte est retiré du site (Mark, 25-09-2026 : « pas de marron »).
+       Les jetons --brown gardent leur nom et portent un vert très sombre, tiré
+       du vert forêt : texte, fonds sombres, voiles sur les photos. */
+    --brown:       #1f2d1c;   /* le texte, les fonds sombres. Blanc dessus : 14:1 */
+    --brown-80:    #4b5748;   /* texte secondaire sur blanc : 7,4:1 */
+    --brown-60:    #7b8578;
+    --brown-40:    #aab1a8;   /* petit texte sur fond sombre : 8:1 */
+    --brown-20:    #d6dbd4;   /* filets ; texte courant sur fond sombre */
     --forest:      #417d39;   /* primaire — le texte vert (liens, chiffres). Sur blanc : 5:1 */
     --forest-80:   #679761;
     --forest-60:   #8db188;
@@ -42,7 +45,7 @@
     --orange-20:   #fee5ce;
 
     /* Les mêmes, pour les transparences : rgb(var(--brown-rgb) / .6) */
-    --brown-rgb:   83 65 60;
+    --brown-rgb:   31 45 28;
     --forest-rgb:  65 125 57;
     --lime-rgb:    171 191 15;
     --orange-rgb:  250 127 8;
@@ -1277,3 +1280,5 @@ html[lang="fr"] .hero--wwd h1 { font-size: clamp(30px, 4.2vw, 60px); }
     .tile--office::after { top: 3px; right: 3px; width: 6px; height: 6px; box-shadow: 0 0 0 2px #fff; }
     .tile--team small { display: none; }
 }
+.hero--story .hero__lead { max-width: 46ch; }
+.storymap-full:not(.is-live) iframe { pointer-events: none; }   /* la molette fait défiler la page tant que la carte n'est pas sous la barre */
