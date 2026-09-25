@@ -35,8 +35,13 @@ tableau est mis à jour le jour même.
 
 ```
 index.html                 l'accueil
-what-we-do.html            les cinq domaines
-knowledge-synthesis.html   gabarit d'une page de domaine
+what-we-do.html            les cinq domaines, une rangée chacun (pas de sous-menu)
+infographics-science-illustration.html, knowledge-synthesis.html,
+strategic-advising.html, workshops-facilitation.html,
+education-science-outreach.html
+                           une page par domaine : « You'll want us if… »,
+                           les services, des exemples. Un exemple sans
+                           fichier est un espace réservé (work-tile--ph)
 our-story.html             l'histoire de Fuse
 our-team.html              l'équipe
 blog.html                  les articles
@@ -44,9 +49,18 @@ connect.html               le contact
 assets/site.css            UNE seule feuille de style pour tout le site
 assets/site.js             les effets (apparitions, bande de logos)
 assets/fonts/              Montserrat et Source Sans 3, servies d'ici
-assets/img/                les images (d-… domaines, p-… partenaires)
+assets/img/                les images (d-… domaines, p-… partenaires,
+                           icons/ les icônes des domaines, work/ les livrables)
 CHANGELOG.md               le journal des publications
+fr/                        la version française : mêmes noms de fichiers,
+                           chemins en ../assets/, bouton EN/FR dans la barre
 ```
+
+**Le site est bilingue depuis le 25 septembre 2026.** Toute modification
+d'une page anglaise se reporte dans `fr/` la même fois, ou elle ne se fait
+pas : deux versions qui divergent, c'est la française qui est fausse sans
+que rien ne le signale. Les noms de services suivent un glossaire unique
+(Nos services, Synthèse des connaissances, Conseil stratégique…).
 
 HTML et CSS écrits à la main, sans outil de construction, sans
 bibliothèque. Une page nouvelle se fait en copiant la page existante la

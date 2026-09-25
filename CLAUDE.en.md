@@ -39,8 +39,13 @@ table is updated the same day.
 
 ```
 index.html                 home page
-what-we-do.html            the five service areas
-knowledge-synthesis.html   template for a service-area page
+what-we-do.html            the five service areas, one row each (no submenu)
+infographics-science-illustration.html, knowledge-synthesis.html,
+strategic-advising.html, workshops-facilitation.html,
+education-science-outreach.html
+                           one page per service area: "You'll want us if…",
+                           the services, examples. An example without a
+                           file is a placeholder (work-tile--ph)
 our-story.html             Fuse's story
 our-team.html              the team
 blog.html                  articles
@@ -48,9 +53,17 @@ connect.html               contact
 assets/site.css            ONE stylesheet for the whole site
 assets/site.js             effects (reveal on scroll, logo strip)
 assets/fonts/              Montserrat and Source Sans 3, served from here
-assets/img/                images (d-… service areas, p-… partners)
+assets/img/                images (d-… service areas, p-… partners,
+                           icons/ service-area icons, work/ deliverables)
 CHANGELOG.md               publication log
+fr/                        the French version: same file names,
+                           paths in ../assets/, EN/FR button in the header
 ```
+
+**The site is bilingual since September 25, 2026.** Any change to an
+English page is carried into `fr/` in the same change, or not at all:
+two versions that drift apart leave the French one wrong, silently.
+Service names follow a single glossary.
 
 Hand-written HTML and CSS, no build tool, no library. A new page is made
 by copying the closest existing page.
