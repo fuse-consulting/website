@@ -49,8 +49,8 @@ literature-review.html, guidebook.html, best-management-practice.html
 case-studies.html          les études de cas, filtrées par domaine
                            (?area=synthesis). Chaque page de domaine en
                            montre trois avant l'appel final
-our-story.html             l'histoire de Fuse : leur StoryMap ArcGIS dans
-                           un cadre, seul contenu extérieur du site
+our-story.html             l'histoire de Fuse : leur StoryMap refaite en HTML
+                           (assets/img/story/), frise, panneau latéral, images à points
 our-team.html              l'équipe
 blog.html                  les articles
 connect.html               le contact

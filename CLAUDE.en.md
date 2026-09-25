@@ -53,8 +53,8 @@ literature-review.html, guidebook.html, best-management-practice.html
 case-studies.html          case studies, filtered by service area
                            (?area=synthesis). Each service-area page
                            shows three before the final call to action
-our-story.html             Fuse's story: their ArcGIS StoryMap in a
-                           frame, the only external content on the site
+our-story.html             Fuse's story: their StoryMap rebuilt in HTML
+                           (assets/img/story/), timeline, side panel, hotspot images
 our-team.html              the team
 blog.html                  articles
 connect.html               contact
