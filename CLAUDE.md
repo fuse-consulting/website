@@ -42,7 +42,15 @@ education-science-outreach.html
                            une page par domaine : « You'll want us if… »,
                            les services, des exemples. Un exemple sans
                            fichier est un espace réservé (work-tile--ph)
-our-story.html             l'histoire de Fuse
+literature-review.html, guidebook.html, best-management-practice.html
+                           une page d'exemple par livrable de Knowledge
+                           Synthesis : structure, extraits (maquettes),
+                           produit final
+case-studies.html          les études de cas, filtrées par domaine
+                           (?area=synthesis). Chaque page de domaine en
+                           montre trois avant l'appel final
+our-story.html             l'histoire de Fuse : leur StoryMap ArcGIS dans
+                           un cadre, seul contenu extérieur du site
 our-team.html              l'équipe
 blog.html                  les articles
 connect.html               le contact
@@ -123,10 +131,18 @@ après suppression.
 - Je ne change que ce qui est demandé.
 - Couleurs, tailles et espacements viennent des variables en tête de
   `assets/site.css`. Je n'ajoute pas de couleur en dur.
-- Le vert de marque `#ABBF0F` est un aplat, jamais une couleur de texte
-  (contraste 2:1). Texte vert : `--lime-700` ou `--lime-900`.
+- La charte a quatre couleurs : brun `--brown` et vert forêt `--forest`
+  (primaires), lime `--lime` et orange `--orange` (secondaires), chacune en
+  tons 80, 60, 40, 20 % (`--brown-80`…). Une transparence se prend dans
+  20 / 40 / 60 / 80 % (`rgb(var(--brown-rgb) / .6)`).
+- **Aucun brun visible sur le site** (décision du 25-09-2026) : les jetons
+  `--brown` portent un vert très sombre (#1f2d1c). Ne jamais y remettre
+  #53413c ni ajouter de fond brun.
+- Le texte est en `--ink` (ce vert très sombre). Texte vert : `--forest`. Le lime est un aplat, jamais
+  une couleur de texte (contraste 2:1).
 - L'orange (`--orange`) est la seule couleur d'action (boutons, liens
-  d'appel).
+  d'appel), toujours sous un texte `--ink` : le blanc sur orange ne se lit pas
+  (2,6:1).
 - Chaque page garde `<meta name="robots" content="noindex, nofollow">`
   tant que le site n'a pas remplacé fuseconsulting.ca.
 
