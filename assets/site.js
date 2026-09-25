@@ -500,14 +500,63 @@ var FUSE_FR = document.documentElement.lang === 'fr';
         window.addEventListener('hashchange', function () { pickArea('all', true); });
     }
 
-    /* Our Story : la StoryMap ne prend la molette qu'une fois calée sous la barre */
-    var sm = document.querySelector('.storymap-full');
-    if (sm) {
-        var smLive = function () {
-            var hd = document.querySelector('.site-header'), top = sm.getBoundingClientRect().top, h = hd ? hd.getBoundingClientRect().height : 0;
-            sm.classList.toggle('is-live', top <= h + 2);
+    /* Our Story : la frise se dessine au défilement */
+    var tl = document.querySelector('.sto-tl');
+    if (tl && !reduced) {
+        var tlDraw = function () {
+            var r = tl.getBoundingClientRect(), vh = window.innerHeight;
+            var p = Math.min(1, Math.max(0, (vh * .6 - r.top) / r.height));
+            tl.style.setProperty('--p', p.toFixed(3));
         };
-        window.addEventListener('scroll', smLive, { passive: true }); window.addEventListener('resize', smLive); smLive();
+        window.addEventListener('scroll', tlDraw, { passive: true }); tlDraw();
+    }
+
+    /* Our Story : le panneau latéral — l'étape au milieu de l'écran choisit l'image */
+    var steps = Array.prototype.slice.call(document.querySelectorAll('.sto-step'));
+    if (steps.length) {
+        var smImgs = document.querySelectorAll('.sto-side__frame img'), smDots = document.querySelectorAll('.sto-side__dots span');
+        var stepOn = function (k) {
+            steps.forEach(function (s, j) { s.classList.toggle('is-on', j === k); });
+            Array.prototype.forEach.call(smImgs, function (m, j) { m.classList.toggle('is-on', j === k); });
+            Array.prototype.forEach.call(smDots, function (d, j) { d.classList.toggle('is-on', j === k); });
+        };
+        stepOn(0);
+        if ('IntersectionObserver' in window) {
+            var sio = new IntersectionObserver(function (es) {
+                es.forEach(function (e) { if (e.isIntersecting) stepOn(steps.indexOf(e.target)); });
+            }, { rootMargin: '-45% 0px -45% 0px' });
+            steps.forEach(function (s) { sio.observe(s); });
+        }
+    }
+
+    /* Our Story : les images à points — survol à la souris, toucher au doigt, Échap pour fermer */
+    var hots = Array.prototype.slice.call(document.querySelectorAll('.hot'));
+    if (hots.length) {
+        var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        var hotSet = function (h, open) {
+            h.classList.toggle('is-open', open);
+            h.querySelector('.hot__btn').setAttribute('aria-expanded', open ? 'true' : 'false');
+            h.querySelector('.hot__card').hidden = !open;
+            var k = h.getAttribute('data-k');
+            document.querySelectorAll('.sto-steps3 li[data-k="' + k + '"]').forEach(function (li) { li.classList.toggle('is-lit', open); });
+        };
+        var hotCloseAll = function (except) { hots.forEach(function (h) { if (h !== except && h.classList.contains('is-open')) hotSet(h, false); }); };
+        hots.forEach(function (h) {
+            var btn = h.querySelector('.hot__btn');
+            btn.addEventListener('click', function (e) { e.stopPropagation(); var o = !h.classList.contains('is-open'); hotCloseAll(h); hotSet(h, o); });
+            if (fine) {
+                h.addEventListener('mouseenter', function () { hotCloseAll(h); hotSet(h, true); });
+                h.addEventListener('mouseleave', function () { hotSet(h, false); });
+            }
+        });
+        document.querySelectorAll('.sto-steps3 li[data-k]').forEach(function (li) {
+            var h = hots.filter(function (x) { return x.getAttribute('data-k') === li.getAttribute('data-k'); })[0];
+            if (!h || !fine) return;
+            li.addEventListener('mouseenter', function () { hotCloseAll(h); hotSet(h, true); });
+            li.addEventListener('mouseleave', function () { hotSet(h, false); });
+        });
+        document.addEventListener('click', function (e) { if (!e.target.closest('.hot')) hotCloseAll(null); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') hotCloseAll(null); });
     }
 
     /* Les formats d'atelier : filtrés par lieu et par taille */
