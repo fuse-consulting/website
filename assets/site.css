@@ -264,9 +264,16 @@ p { margin: 0 0 1em; }
 /* ── Le travail, en grand ───────────────────────────────────────── */
 .work { display: grid; grid-template-columns: 1.35fr .65fr; gap: clamp(28px, 4vw, 56px); align-items: center; }
 @media (max-width: 900px) { .work { grid-template-columns: 1fr; } }
-.work__media { position: relative; border-radius: 6px; overflow: hidden; box-shadow: 0 40px 70px -40px rgb(var(--brown-rgb) / .6); clip-path: inset(0 100% 0 0); transition: clip-path 1.2s var(--ease-out); }
-.work__media.in { clip-path: inset(0 0 0 0); }
-.work__media img { width: 100%; }
+/* Le rideau est posé sur les ENFANTS de la figure, jamais sur la figure
+   elle-même : Chrome applique le clip-path de l'élément observé au calcul de
+   l'IntersectionObserver, et un inset(0 100% 0 0) donne un rectangle de
+   largeur nulle — la classe .in n'arrivait jamais, l'image restait invisible
+   (signalé par Fuse le 28-09-2026). Safari ne le fait pas, d'où l'écart. */
+.work__media { position: relative; border-radius: 6px; overflow: hidden; box-shadow: 0 40px 70px -40px rgb(var(--brown-rgb) / 0); transition: box-shadow 1.2s var(--ease-out); }
+.work__media.in { box-shadow: 0 40px 70px -40px rgb(var(--brown-rgb) / .6); }
+.work__media > img, .work__media > figcaption { clip-path: inset(0 100% 0 0); transition: clip-path 1.2s var(--ease-out); }
+.work__media.in > img, .work__media.in > figcaption { clip-path: inset(0 0 0 0); }
+.work__media img { width: 100%; display: block; }
 .work__media figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 18px; font-size: 14px; color: #fff; background: linear-gradient(to top, rgb(var(--brown-rgb) / .6), transparent); }
 .work__text h3 { font-size: clamp(26px, 3vw, 38px); margin-bottom: 18px; }
 .work__steps { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 14px; }
@@ -353,7 +360,7 @@ details.product > div { padding: 0 20px 20px; color: var(--ink-muted); }
     .hero h1 .line > span { transform: none; }
     .hero__kicker::before { transform: none; }
     .reveal { opacity: 1; transform: none; }
-    .work__media { clip-path: none; }
+    .work__media > img, .work__media > figcaption { clip-path: none; }
     .word::before { transform: none; }
     .marquee { mask-image: none; -webkit-mask-image: none; }
     .marquee__track { width: auto; flex-wrap: wrap; justify-content: center; gap: 32px 48px; }
