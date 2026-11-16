@@ -4,6 +4,19 @@
    d'IntersectionObserver). */
 /* La langue de la page décide des quelques mots que ce script écrit. */
 var FUSE_FR = document.documentElement.lang === 'fr';
+/* ── L'ouverture de l'accueil : une image tirée au hasard dans le lot (data-heroes="grande|mobile, …") ── */
+(function () {
+    'use strict';
+    var bg = document.querySelector('.hero__bg[data-heroes]');
+    if (!bg) return;
+    var lot = bg.getAttribute('data-heroes').split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+    if (lot.length < 2) return;
+    var pick = lot[Math.floor(Math.random() * lot.length)].split('|');
+    var img = bg.querySelector('img'), src = bg.querySelector('source');
+    if (img && img.getAttribute('src') !== pick[0]) { img.src = pick[0]; img.alt = ''; }   /* le texte alternatif ne décrit que l'image d'origine */
+    if (src) src.srcset = pick[1] || pick[0];
+})();
+
 (function () {
     'use strict';
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -85,7 +98,15 @@ var FUSE_FR = document.documentElement.lang === 'fr';
 
     /* ── La mosaïque de l'ouverture : les portraits de la grille, trois rangées ── */
     var mosaic = document.querySelector('.mosaic');
-    if (mosaic && members.length) {
+    if (mosaic && members.length && mosaic.classList.contains('mosaic--once')) {
+        /* chaque personne une seule fois, en grand (retour de Flore, 12-11-2026) */
+        members.forEach(function (m, k) {
+            var im = document.createElement('img');
+            im.src = m.querySelector('.member__media img').getAttribute('src'); im.alt = ''; im.decoding = 'async';
+            im.style.setProperty('--i', k);
+            mosaic.appendChild(im);
+        });
+    } else if (mosaic && members.length) {
         var srcs = members.map(function (m) { return m.querySelector('.member__media img').getAttribute('src'); });
         for (var r = 0; r < 3; r++) {
             var row = document.createElement('div');
@@ -632,5 +653,18 @@ var FUSE_FR = document.documentElement.lang === 'fr';
     if (about) {
         var val = decodeURIComponent(about.replace(/\+/g, ' '));
         document.querySelectorAll('input[name="service"]').forEach(function (i) { if (i.value === val) i.checked = true; });
+    }
+
+    /* Connect : les questions d'un service ne s'affichent que pour lui (sans JS, tout reste visible) */
+    var extras = Array.prototype.slice.call(document.querySelectorAll('.form-extra[data-service]'));
+    if (extras.length) {
+        var syncExtras = function () {
+            var on = document.querySelector('input[name="service"]:checked');
+            extras.forEach(function (x) { x.hidden = !on || on.value !== x.getAttribute('data-service'); });
+        };
+        document.querySelectorAll('input[name="service"]').forEach(function (i) { i.addEventListener('change', syncExtras); });
+        var formEl = document.querySelector('.contact-form');
+        if (formEl) formEl.addEventListener('reset', function () { setTimeout(syncExtras, 0); });
+        syncExtras();
     }
 })();

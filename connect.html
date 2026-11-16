@@ -6,7 +6,7 @@
 <title>Connect with us — Fuse Consulting</title>
 <meta name="description" content="Connect with Fuse Consulting: write to Hello@fuseconsulting.ca, tell us about your project, or visit our offices in Edmonton and Salmon Arm.">
 <meta name="robots" content="noindex, nofollow">
-<link rel="stylesheet" href="assets/site.css?v=20260928a">
+<link rel="stylesheet" href="assets/site.css?v=20261116a">
 <link rel="alternate" hreflang="en" href="connect.html">
 <link rel="alternate" hreflang="fr" href="fr/connect.html">
 <link rel="icon" href="assets/img/fuse-logo.png">
@@ -85,8 +85,18 @@
             </div>
             <form class="contact-form reveal" id="form" action="mailto:Hello@fuseconsulting.ca" method="post">
                 <fieldset>
-                    <legend>What can we help with?</legend>
-                    <div class="pills"><label class="pill"><input type="radio" name="service" value="Infographics &amp; Science Illustration" required><span>Infographics &amp; Science Illustration</span></label><label class="pill"><input type="radio" name="service" value="Knowledge Synthesis"><span>Knowledge Synthesis</span></label><label class="pill"><input type="radio" name="service" value="Strategic Advising"><span>Strategic Advising</span></label><label class="pill"><input type="radio" name="service" value="Workshops &amp; Facilitation"><span>Workshops &amp; Facilitation</span></label><label class="pill"><input type="radio" name="service" value="Education &amp; Science Outreach"><span>Education &amp; Science Outreach</span></label><label class="pill"><input type="radio" name="service" value="Something else"><span>Something else</span></label></div>
+                    <legend>Which service are you interested in?</legend>
+                    <div class="pills"><label class="pill"><input type="radio" name="service" value="Infographics &amp; Science Communication" required><span>Infographics &amp; Science Communication</span></label><label class="pill"><input type="radio" name="service" value="Knowledge Synthesis"><span>Knowledge Synthesis</span></label><label class="pill"><input type="radio" name="service" value="Strategic Advising"><span>Strategic Advising</span></label><label class="pill"><input type="radio" name="service" value="Workshops &amp; Facilitation"><span>Workshops &amp; Facilitation</span></label><label class="pill"><input type="radio" name="service" value="Education &amp; Science Outreach"><span>Education &amp; Science Outreach</span></label><label class="pill"><input type="radio" name="service" value="Something else"><span>Something else</span></label></div>
+                </fieldset>
+                <!-- Les questions propres à un service : montrées quand ce service est coché (site.js) -->
+                <fieldset class="form-extra" data-service="Workshops &amp; Facilitation">
+                    <legend>About your session <small>optional</small></legend>
+                    <label class="field"><span>How many participants?</span><input type="number" name="participants" min="1" inputmode="numeric"></label>
+                    <div class="field"><span>In person or online?</span>
+                        <div class="pills"><label class="pill"><input type="radio" name="setting" value="In person"><span>In person</span></label><label class="pill"><input type="radio" name="setting" value="Online"><span>Online</span></label><label class="pill"><input type="radio" name="setting" value="Not sure yet"><span>Not sure yet</span></label></div>
+                    </div>
+                    <label class="field"><span>What should the session achieve?</span><textarea name="objective" rows="3" maxlength="600"></textarea></label>
+                    <label class="field"><span>Target date</span><input type="date" name="target_date"></label>
                 </fieldset>
                 <label class="field"><span>Name</span><input type="text" name="name" autocomplete="name" required></label>
                 <label class="field"><span>Email</span><input type="email" name="email" autocomplete="email" required></label>
@@ -216,7 +226,7 @@
         <div>
             <h4>What we do</h4>
             <ul>
-                <li><a href="infographics-science-illustration.html">Infographics &amp; Science Illustration</a></li>
+                <li><a href="infographics-science-communication.html">Infographics &amp; Science Communication</a></li>
                 <li><a href="knowledge-synthesis.html">Knowledge Synthesis</a></li>
                 <li><a href="strategic-advising.html">Strategic Advising</a></li>
                 <li><a href="workshops-facilitation.html">Workshops &amp; Facilitation</a></li>
@@ -248,6 +258,6 @@
     </div>
 </footer>
 
-<script src="assets/site.js?v=20260928a"></script>
+<script src="assets/site.js?v=20261116a"></script>
 </body>
 </html>
